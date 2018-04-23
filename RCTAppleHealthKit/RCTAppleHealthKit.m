@@ -219,6 +219,11 @@ RCT_EXPORT_METHOD(getWorkoutSamples:(NSDictionary *)input callback:(RCTResponseS
     [self workout_getWorkoutSamples:input callback:callback];
 }
 
+RCT_EXPORT_METHOD(startWatchApp:(NSDictionary *)configuration callback:(RCTResponseSenderBlock)callback)
+{
+    [self workout_startWatchApp:configuration callback:callback];
+}
+
 - (void)isHealthKitAvailable:(RCTResponseSenderBlock)callback
 {
     BOOL isAvailable = NO;

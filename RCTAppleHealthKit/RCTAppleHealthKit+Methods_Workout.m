@@ -16,11 +16,11 @@
         callback(@[RCTMakeError(@"startDate is required in options", nil, nil)]);
         return;
     }
-    
+
     NSPredicate *predicate = [RCTAppleHealthKit predicateForSamplesBetweenDates:startDate endDate:endDate];
     NSUInteger limit = [RCTAppleHealthKit uintFromOptions:input key:@"limit" withDefault:HKObjectQueryNoLimit];
-    
-    
+
+
     [self fetchWorkoutSamplesForPredicate:predicate limit:limit
     completion:^(NSArray *results, NSError *error) {
         if(results){
@@ -34,6 +34,20 @@
     }];
 }
 
+- (void)workout_startWatchApp:(NSDictionary *)configuration callback:(RCTResponseSenderBlock)callback
+{
+  HKWorkoutConfiguration* config = [[HKWorkoutConfiguration alloc] init];
+  config.activityType = HKWorkoutActivityTypeHighIntensityIntervalTraining;
+  config.locationType = HKWorkoutSessionLocationTypeIndoor;
+
+  [self.healthStore startWatchAppWithWorkoutConfiguration:config completion:^(BOOL success, NSError * _Nullable error) {
+    if (success || error == nil) {
+      callback(@[[NSNull null]]);
+    } else {
+      callback(@[RCTMakeError(error.localizedDescription, nil, nil)]);
+    }
+  }];
+}
 
 
 @end
