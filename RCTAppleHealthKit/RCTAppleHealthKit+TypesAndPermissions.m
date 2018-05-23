@@ -116,6 +116,8 @@
         @"SleepAnalysis" : [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis],
         // Mindfulness
         @"MindfulSession" : [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierMindfulSession],
+        // Workout
+        @"Workout" : [HKWorkoutType workoutType]
     };
     return writePerms;
 }
